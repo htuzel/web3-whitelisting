@@ -2,7 +2,7 @@ import { Contract, providers, utils } from "ethers";
 import Head from "next/head";
 import React, { useEffect, useRef, useState } from "react";
 import Web3Modal from "web3modal";
-import { abi, NFT_CONTRACT_ADDRESS } from "../constants";
+import { abi_NFT_CONTRACT, NFT_CONTRACT_ADDRESS } from "../constants";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -32,7 +32,7 @@ export default function Home() {
       // update methods
       const whitelistContract = new Contract(
         NFT_CONTRACT_ADDRESS,
-        abi,
+        abi_NFT_CONTRACT,
         signer
       );
       // call the presaleMint from the contract, only whitelisted addresses would be able to mint
@@ -62,7 +62,7 @@ export default function Home() {
       // update methods
       const whitelistContract = new Contract(
         NFT_CONTRACT_ADDRESS,
-        abi,
+        abi_NFT_CONTRACT,
         signer
       );
       // call the mint from the contract to mint the Crypto Dev
@@ -106,7 +106,7 @@ export default function Home() {
       // update methods
       const whitelistContract = new Contract(
         NFT_CONTRACT_ADDRESS,
-        abi,
+        abi_NFT_CONTRACT,
         signer
       );
       // call the startPresale from the contract
@@ -133,7 +133,7 @@ export default function Home() {
       const provider = await getProviderOrSigner();
       // We connect to the Contract using a Provider, so we will only
       // have read-only access to the Contract
-      const nftContract = new Contract(NFT_CONTRACT_ADDRESS, abi, provider);
+      const nftContract = new Contract(NFT_CONTRACT_ADDRESS, abi_NFT_CONTRACT, provider);
       // call the presaleStarted from the contract
       const _presaleStarted = await nftContract.presaleStarted();
       if (!_presaleStarted) {
@@ -158,7 +158,7 @@ export default function Home() {
       const provider = await getProviderOrSigner();
       // We connect to the Contract using a Provider, so we will only
       // have read-only access to the Contract
-      const nftContract = new Contract(NFT_CONTRACT_ADDRESS, abi, provider);
+      const nftContract = new Contract(NFT_CONTRACT_ADDRESS, abi_NFT_CONTRACT, provider);
       // call the presaleEnded from the contract
       const _presaleEnded = await nftContract.presaleEnded();
       // _presaleEnded is a Big Number, so we are using the lt(less than function) instead of `<`
@@ -188,13 +188,15 @@ export default function Home() {
       const provider = await getProviderOrSigner();
       // We connect to the Contract using a Provider, so we will only
       // have read-only access to the Contract
-      const nftContract = new Contract(NFT_CONTRACT_ADDRESS, abi, provider);
+      const nftContract = new Contract(NFT_CONTRACT_ADDRESS, abi_NFT_CONTRACT, provider);
       // call the owner function from the contract
       const _owner = await nftContract.owner();
       // We will get the signer now to extract the address of the currently connected MetaMask account
       const signer = await getProviderOrSigner(true);
       // Get the address associated to the signer which is connected to  MetaMask
       const address = await signer.getAddress();
+      console.log(address.toLowerCase());
+      console.log(_owner.toLowerCase());
       if (address.toLowerCase() === _owner.toLowerCase()) {
         setIsOwner(true);
       }
@@ -213,7 +215,7 @@ export default function Home() {
       const provider = await getProviderOrSigner();
       // We connect to the Contract using a Provider, so we will only
       // have read-only access to the Contract
-      const nftContract = new Contract(NFT_CONTRACT_ADDRESS, abi, provider);
+      const nftContract = new Contract(NFT_CONTRACT_ADDRESS, abi_NFT_CONTRACT, provider);
       // call the tokenIds from the contract
       const _tokenIds = await nftContract.tokenIds();
       //_tokenIds is a `Big Number`. We need to convert the Big Number to a string
@@ -225,7 +227,7 @@ export default function Home() {
 
   /**
    * Returns a Provider or Signer object representing the Ethereum RPC with or without the
-   * signing capabilities of metamask attached
+   * signing capabi_NFT_CONTRACTlities of metamask attached
    *
    * A `Provider` is needed to interact with the blockchain - reading transactions, reading balances, reading state, etc.
    *
