@@ -21,15 +21,6 @@
   margin-left: 20%;
 }
 
-.input {
-  width: 200px;
-  height: 100%;
-  padding: 1%;
-  margin-bottom: 2%;
-  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
-  border-radius: 10px;
-}
-
 .title {
   font-size: 2rem;
   margin: 2rem 0;
@@ -47,11 +38,41 @@
   border: none;
   color: #ffffff;
   font-size: 15px;
-  padding: 5px;
-  width: 100px;
+  padding: 10px;
+  width: 200px;
   cursor: pointer;
-  margin-bottom: 2%;
+  margin-right: 2%;
 }
+
+.button2 {
+  border-radius: 4px;
+  background-color: indigo;
+  border: none;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 10px;
+  cursor: pointer;
+  margin-right: 2%;
+  margin-top: 1rem;
+}
+
+.proposalCard {
+  width: fit-content;
+  margin-top: 0.25rem;
+  border: black 2px solid;
+  flex: 1;
+  flex-direction: column;
+}
+
+.container {
+  margin-top: 2rem;
+}
+
+.flex {
+  flex: 1;
+  justify-content: space-between;
+}
+
 @media (max-width: 1000px) {
   .main {
     width: 100%;
